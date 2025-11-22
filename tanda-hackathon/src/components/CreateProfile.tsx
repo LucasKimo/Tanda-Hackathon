@@ -117,7 +117,7 @@ export default function CreateProfile() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border-2 border-white bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white"
+            className="w-full px-4 py-3 rounded-lg border-2 border-white bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white text-black"
             placeholder="Enter your name"
           />
         </div>
@@ -132,7 +132,7 @@ export default function CreateProfile() {
             type="text"
             value={occupation}
             onChange={(e) => setOccupation(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border-2 border-white bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white"
+            className="w-full px-4 py-3 rounded-lg border-2 border-white bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white text-black"
             placeholder="Enter your occupation"
           />
         </div>

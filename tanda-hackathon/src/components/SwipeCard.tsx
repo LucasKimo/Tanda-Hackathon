@@ -95,8 +95,7 @@ export default function SwipeCard() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Header with Liked List Button */}
-      <div className="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-purple-600">NetworkSwipe</h1>
+      <div className="bg-white shadow-md p-4 flex justify-end items-center">
         <button
           onClick={() => setShowLikedList(!showLikedList)}
           className="bg-pink-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-pink-600 transition-colors"
