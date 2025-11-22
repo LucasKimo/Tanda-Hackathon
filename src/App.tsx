@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [eventId, setEventId] = useState("TANDA");
-  const baseUrl = "https://mixr.vercel.app/join"; // 나중에 배포 URL로 변경
+  const baseUrl = "https://tanda-hackathon-wecc.vercel.app/join";
 
   const qrUrl = `${baseUrl}?eventId=${eventId}`;
 
