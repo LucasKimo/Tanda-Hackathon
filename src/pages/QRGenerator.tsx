@@ -17,7 +17,8 @@ function QRGenerator() {
       overflow: "hidden",
       boxSizing: "border-box"
     }}>
-      <h1 style={{ margin: "0 0 10px 0" }}>BRKR</h1>
+      <h1 style={{ fontSize: "50px"}}>BRKR</h1>
+    
       <h2 style={{ fontSize: "32px", margin: "0 0 20px 0" }}>
         Event: TANDA
       </h2>
