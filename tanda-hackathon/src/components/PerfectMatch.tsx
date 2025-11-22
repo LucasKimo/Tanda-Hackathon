@@ -26,10 +26,20 @@ export function PerfectMatch({ match, onSave, onSkip }: PerfectMatchProps) {
         </div>
 
         <div className="bg-white rounded-2xl p-8 shadow-xl space-y-6">
-          {/* Avatar */}
-          <div className="w-24 h-24 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full flex items-center justify-center mx-auto">
-            <span className="text-white">{match.name.charAt(0)}</span>
-          </div>
+{/* Avatar */}
+<div className="w-24 h-24 rounded-full mx-auto overflow-hidden bg-gradient-to-br from-purple-400 to-blue-400 flex items-center justify-center">
+  {match.profileImage ? (
+    <img
+      src={match.profileImage}
+      alt={match.name}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <span className="text-white text-2xl">
+      {match.name.charAt(0)}
+    </span>
+  )}
+</div>
 
           {/* Profile Info */}
           <div className="text-center space-y-2">
