@@ -4,7 +4,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Badge } from './ui/badge';
 import { Textarea } from './ui/textarea';
-import { Camera, Upload } from 'lucide-react';
+import { Camera } from 'lucide-react';
 import type { Profile } from '../App';
 
 interface ProfileSetupProps {
