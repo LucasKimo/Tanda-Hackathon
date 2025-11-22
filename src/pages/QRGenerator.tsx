@@ -3,7 +3,7 @@ import { QRCodeCanvas } from "qrcode.react";
 
 function QRGenerator() {
   const [eventId] = useState("TANDA");
-  const baseUrl = "https://tanda-hackathon-wecc.vercel.app/create-profile";
+  const baseUrl = "https://tanda-hackathon-wecc.vercel.app/attendee";
   const qrUrl = `${baseUrl}?eventId=${eventId}`;
 
   return (

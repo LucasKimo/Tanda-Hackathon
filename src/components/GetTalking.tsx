@@ -1,126 +1,152 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Sparkles, Target } from 'lucide-react';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import type { Match } from '../AttendeeApp';
 
-interface Profile {
-  id: number;
-  name: string;
-  occupation: string;
-  description: string;
-  interests: string[];
-  image: string;
+interface GetTalkingProps {
+  matches: Match[];
+  onSwipeAgain: () => void;
+  onEditProfile: () => void;
+  onViewSaved: () => void;
 }
 
-export default function GetTalking() {
-  const navigate = useNavigate();
-  const [likedProfiles, setLikedProfiles] = useState<Profile[]>([]);
-
-  useEffect(() => {
-    const liked = localStorage.getItem('likedProfiles');
-    if (liked) {
-      setLikedProfiles(JSON.parse(liked));
-    }
-  }, []);
-
-  const handleStartOver = () => {
-    navigate('/swipe');
-  };
-
-  const handleBackToProfile = () => {
-    navigate('/');
-  };
+export function GetTalking({ matches, onSwipeAgain, onEditProfile, onViewSaved }: GetTalkingProps) {
+  // Calculate total shared interests
+  const totalSharedInterests = matches.reduce((acc, match) => {
+    return acc + match.sharedInterests.length;
+  }, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center p-6">
-      <div className="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-8">
-        {/* Celebration Header */}
-        <div className="text-center mb-8">
-          <div className="text-6xl mb-4">🎉</div>
-          <h1 className="text-5xl font-bold text-gray-800 mb-2">Get Talking!</h1>
-          <p className="text-xl text-gray-600">
-            You've matched with {likedProfiles.length} awesome {likedProfiles.length === 1 ? 'person' : 'people'}
-          </p>
+    <div className="min-h-screen p-4 pb-20 relative z-10">
+      <div className="max-w-2xl mx-auto space-y-6">
+        {/* Header with Emoji */}
+        <div className="text-center space-y-4 pt-8">
+          <div className="text-6xl">🎉</div>
+          <div>
+            <h1 className="neon-text bg-gradient-to-r from-purple-200 to-pink-200 bg-clip-text text-transparent">
+              Get Talking!
+            </h1>
+            <p className="text-white mt-2" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+              You've matched with {matches.length} awesome {matches.length === 1 ? 'person' : 'people'}
+            </p>
+          </div>
         </div>
 
-        {/* Matched Profiles List */}
-        {likedProfiles.length > 0 ? (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Your Matches</h2>
-            <div className="space-y-4 max-h-96 overflow-y-auto">
-              {likedProfiles.map((profile) => (
+        {/* Matches List */}
+        {matches.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-white" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+              Your Matches
+            </h2>
+            
+            <div className="space-y-3">
+              {matches.map(match => (
                 <div
-                  key={profile.id}
-                  className="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl hover:shadow-lg transition-shadow"
+                  key={match.id}
+                  className="glass-card rounded-xl p-4 border border-purple-400/30 hover:border-purple-400/50 transition-all"
                 >
-                  <img
-                    src={profile.image}
-                    alt={profile.name}
-                    className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800">{profile.name}</h3>
-                    <p className="text-gray-600 mb-2">{profile.occupation}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {profile.interests.map((interest) => (
-                        <span
-                          key={interest}
-                          className="px-2 py-1 bg-purple-200 text-purple-700 rounded-full text-xs font-medium"
-                        >
-                          {interest}
-                        </span>
-                      ))}
+                  <div className="flex items-start gap-4">
+                    {/* Avatar */}
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-violet-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      {match.profileImage ? (
+                        <img 
+                          src={match.profileImage} 
+                          alt={match.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-white text-xl">{match.name.charAt(0)}</span>
+                      )}
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0 space-y-2">
+                      <h3 className="text-white" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                        {match.name}
+                      </h3>
+
+                      {/* Skills Description */}
+                      <p className="text-slate-300 text-sm" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                        {match.skillsDescription || match.interests.join(', ')}
+                      </p>
+
+                      {/* Shared Interests Badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {match.sharedInterests.slice(0, 3).map(interest => (
+                          <Badge 
+                            key={interest} 
+                            className="bg-gradient-to-r from-purple-600 to-indigo-600 border-purple-400/50 text-white text-xs"
+                          >
+                            {interest}
+                          </Badge>
+                        ))}
+                        {match.sharedInterests.length > 3 && (
+                          <Badge className="bg-purple-500/20 border-purple-400/30 text-purple-200 text-xs">
+                            +{match.sharedInterests.length - 3} more
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        ) : (
-          <div className="mb-8 text-center p-8 bg-gray-50 rounded-xl">
-            <div className="text-4xl mb-2">😢</div>
-            <p className="text-gray-600">
-              You didn't match with anyone this time. Try again!
-            </p>
-          </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="space-y-3">
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-xl text-center">
-            <p className="text-gray-700 text-lg mb-2">
-              🎯 <strong>Next Steps:</strong>
-            </p>
-            <p className="text-gray-600">
-              Start conversations with your matches and make meaningful connections at this event!
-            </p>
-          </div>
-
-          <div className="flex gap-3">
-            <button
-              onClick={handleStartOver}
-              className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
-            >
-              Swipe Again
-            </button>
-            <button
-              onClick={handleBackToProfile}
-              className="flex-1 bg-white text-purple-600 font-bold py-4 rounded-xl shadow-lg border-2 border-purple-500 hover:bg-purple-50 transform hover:scale-105 transition-all"
-            >
-              Edit Profile
-            </button>
+        {/* Next Steps */}
+        <div className="glass-card rounded-xl p-6 border border-cyan-400/30">
+          <div className="flex items-start gap-3">
+            <Target className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="text-cyan-200 mb-2">Next Steps:</h3>
+              <p className="text-slate-300 text-sm" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                Start conversations with your matches and make meaningful connections at this event!
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Fun Stats */}
-        <div className="mt-6 grid grid-cols-2 gap-4">
-          <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-            <div className="text-3xl font-bold text-blue-600">{likedProfiles.length}</div>
-            <div className="text-sm text-gray-600">Matches</div>
+        {/* Action Buttons */}
+        <div className="space-y-3">
+          <Button 
+            onClick={onViewSaved}
+            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 border border-purple-400/30"
+            size="lg"
+          >
+            <Sparkles className="w-5 h-5 mr-2" />
+            View Saved Profiles
+          </Button>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <Button 
+              onClick={onSwipeAgain}
+              variant="outline"
+              className="border-purple-400/30 text-white hover:bg-purple-500/20"
+            >
+              Swipe Again
+            </Button>
+            
+            <Button 
+              onClick={onEditProfile}
+              variant="outline"
+              className="border-slate-400/30 text-slate-300 hover:bg-slate-500/20"
+            >
+              Edit Profile
+            </Button>
           </div>
-          <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
-            <div className="text-3xl font-bold text-green-600">
-              {likedProfiles.reduce((sum, p) => sum + p.interests.length, 0)}
-            </div>
-            <div className="text-sm text-gray-600">Shared Interests</div>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="glass-card rounded-xl p-6 text-center border border-purple-400/20">
+            <div className="text-4xl text-purple-300 mb-2">{matches.length}</div>
+            <div className="text-slate-300 text-sm">Matches</div>
+          </div>
+          
+          <div className="glass-card rounded-xl p-6 text-center border border-cyan-400/20">
+            <div className="text-4xl text-cyan-300 mb-2">{totalSharedInterests}</div>
+            <div className="text-slate-300 text-sm">Shared Interests</div>
           </div>
         </div>
       </div>
