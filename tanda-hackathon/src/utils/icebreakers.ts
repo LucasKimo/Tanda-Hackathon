@@ -1,89 +1,102 @@
-// src/utils/icebreakers.ts
-
-// Icebreaker questions based on interests
+// Icebreaker questions based on skills (hackathon-themed)
 const ICEBREAKER_MAP: Record<string, string[]> = {
-  AI: [
-    "What's the most exciting AI development you've seen lately?",
-    "Are you building anything with AI?",
-    "What's your take on where AI is heading?",
+  'Frontend Development': [
+    "What frontend frameworks do you prefer?",
+    "Have you worked with React or Vue before?",
+    "What's your favorite UI library?",
   ],
-  Design: [
-    "What kind of products do you enjoy designing?",
-    "What's your favorite design tool?",
-    "What design trends are you excited about?",
+  'Backend Development': [
+    "What backend stack do you usually use?",
+    "Do you prefer REST APIs or GraphQL?",
+    "What databases are you most comfortable with?",
   ],
-  Startups: [
-    "Are you working on anything on the side?",
-    "What startup ideas are you excited about?",
-    "What's the biggest challenge you're facing right now?",
+  'Full Stack': [
+    "What's your go-to tech stack for hackathons?",
+    "Do you lean more frontend or backend?",
+    "What's your favorite full-stack framework?",
   ],
-  Data: [
-    "What kind of data problems are you working on?",
-    "What's your favorite data visualization tool?",
-    "What's the most interesting insight you've discovered from data?",
+  'UI/UX Design': [
+    "What design tools do you use?",
+    "Have you done design for hackathons before?",
+    "What's your design process like?",
   ],
-  ML: [
-    "What ML models are you working with?",
-    "What's your favorite ML framework?",
-    "What's the most interesting ML project you've seen?",
+  'Product Design': [
+    "How do you approach product design in time-constrained projects?",
+    "What products have you designed recently?",
+    "Do you use Figma or Sketch?",
   ],
-  Web3: [
-    "What Web3 projects are you following?",
-    "What's your take on the future of Web3?",
-    "Are you building anything in the Web3 space?",
+  'AI/ML': [
+    "What ML frameworks are you comfortable with?",
+    "Have you integrated AI into apps before?",
+    "What's your favorite AI use case?",
   ],
-  Growth: [
-    "What growth strategies are working for you?",
-    "What's your biggest growth challenge?",
-    "What growth channels are you exploring?",
+  'Data Science': [
+    "What data tools do you use most?",
+    "Have you built data dashboards before?",
+    "What's your go-to for data analysis?",
   ],
-  Content: [
-    "What kind of content do you create?",
+  'DevOps': [
+    "What cloud platforms do you work with?",
+    "Have you set up CI/CD pipelines before?",
+    "What's your containerization experience?",
+  ],
+  'Mobile Development': [
+    "Do you do native or cross-platform development?",
+    "Have you used React Native or Flutter?",
+    "iOS or Android?",
+  ],
+  'Blockchain': [
+    "What blockchain platforms do you work with?",
+    "Have you built Web3 apps before?",
+    "Solidity or Rust?",
+  ],
+  'Cloud Architecture': [
+    "AWS, Azure, or GCP?",
+    "What's your experience with serverless?",
+    "Have you built microservices before?",
+  ],
+  'Product Management': [
+    "How do you prioritize features in a hackathon?",
+    "What's your approach to MVP scope?",
+    "Have you led product teams before?",
+  ],
+  'Business Strategy': [
+    "What's your approach to go-to-market strategy?",
+    "Have you pitched startup ideas before?",
+    "How do you validate business ideas quickly?",
+  ],
+  'Marketing': [
+    "What marketing channels work best for new products?",
+    "Have you done growth hacking before?",
+    "How would you market a hackathon project?",
+  ],
+  'Content Creation': [
+    "What content formats do you create?",
+    "Have you created demo videos before?",
     "What's your content creation process?",
-    "What content creators do you follow?",
   ],
-  Sales: [
-    "What's your sales process like?",
-    "What's working well for you in sales?",
-    "What sales challenges are you facing?",
+  'Pitching/Presentation': [
+    "Have you pitched at hackathons before?",
+    "What makes a great demo?",
+    "Do you have experience with pitch decks?",
   ],
-  "Developer Tools": [
-    "What developer tools are you building or using?",
-    "What's missing in the developer tools space?",
-    "What's your favorite developer tool?",
+  'Project Management': [
+    "What tools do you use for project management?",
+    "How do you keep teams on track during sprints?",
+    "Have you managed hackathon teams before?",
   ],
-  "Open Source": [
-    "What open source projects are you contributing to?",
-    "Are you maintaining any open source projects?",
-    "What open source projects are you excited about?",
-  ],
-  Psychology: [
-    "What psychology topics interest you most?",
-    "How do you apply psychology in your work?",
-    "What's the most interesting psychological study you've read?",
-  ],
-  Research: [
-    "What are you researching right now?",
+  'Research': [
     "What research methods do you use?",
-    "What's the most interesting research you've come across?",
-  ],
-  Marketing: [
-    "What marketing channels are working for you?",
-    "What's your marketing strategy?",
-    "What marketing trends are you following?",
-  ],
-  Product: [
-    "What products are you working on?",
-    "What's your product development process?",
-    "What product challenges are you facing?",
+    "How do you validate ideas quickly?",
+    "Do you do user research?",
   ],
 };
 
 // Generic fallback questions
 const GENERIC_QUESTIONS = [
-  "What brings you to this event?",
-  "What are you working on right now?",
-  "What kind of projects or collaborations are you looking for?",
+  "What kind of project are you thinking of building?",
+  "Have you done hackathons before?",
+  "What role do you usually take on teams?",
 ];
 
 export function getIcebreakerQuestions(interests: string[]): string[] {
