@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { EventJoin } from './components/EventJoin';
 import { ProfileSetup } from './components/ProfileSetup';
 import { WaitingScreen } from './components/WaitingScreen';
@@ -152,7 +153,11 @@ function calculateMatches(userProfile: Profile, allProfiles: Profile[]): Match[]
 }
 
 export default function AttendeeApp() {
-  const [screen, setScreen] = useState<Screen>('join');
+  const [searchParams] = useSearchParams();
+  const eventId = searchParams.get('eventId');
+  
+  // If coming from QR code (has eventId), skip to setup, otherwise show join screen
+  const [screen, setScreen] = useState<Screen>(eventId ? 'setup' : 'join');
   const [userProfile, setUserProfile] = useState<Profile | null>(null);
   const [roomProfiles, setRoomProfiles] = useState<Profile[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
