@@ -7,8 +7,6 @@ function JoinEvent() {
   
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    phone: "",
     photo: null as File | null
   });
   
@@ -94,28 +92,6 @@ function JoinEvent() {
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
-            required
-            style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-          />
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label>Email Address</label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            required
-            style={{ width: "100%", padding: "8px", marginTop: "5px" }}
-          />
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label>Phone Number</label>
-          <input
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
             required
             style={{ width: "100%", padding: "8px", marginTop: "5px" }}
           />
