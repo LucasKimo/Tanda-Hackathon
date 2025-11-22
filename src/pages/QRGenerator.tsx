@@ -1,40 +1,9 @@
-// import { useState } from "react";
-// import { QRCodeCanvas } from "qrcode.react";
-
-// function QRGenerator() {
-//   const [eventId, setEventId] = useState("TANDA");
-//   const baseUrl = "https://tanda-hackathon-wecc.vercel.app/join";
-//   const qrUrl = `${baseUrl}?eventId=${eventId}`;
-
-//   return (
-//     <div style={{
-//       padding: "20px",
-//       display: "flex",
-//       flexDirection: "column",
-//       alignItems: "center",
-//       justifyContent: "center",
-//       minHeight: "100vh"
-//     }}>
-//       <h1>BRKR</h1>
-//       <h2 style={{ fontSize: "32px", marginTop: "20px", marginBottom: "20px" }}>
-//         Event: TANDA
-//       </h2>
-//       <div style={{ marginTop: "20px", textAlign: "center" }}>
-//         <QRCodeCanvas value={qrUrl} size={400} />
-//       </div>
-//       <p style={{ marginTop: "10px" }}>{qrUrl}</p>
-//     </div>
-//   );
-// }
-
-// export default QRGenerator;
-
 import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
 function QRGenerator() {
-  const [eventId, setEventId] = useState("TANDA");
-  const baseUrl = "https://tanda-hackathon-wecc.vercel.app/join";
+  const [eventId] = useState("TANDA");
+  const baseUrl = "https://tanda-hackathon-wecc.vercel.app/create-profile";
   const qrUrl = `${baseUrl}?eventId=${eventId}`;
 
   return (
