@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-jsx-runtime": "^1.0.0-alpha.1",
+    "vite": "^7.2.4"
+  }
+}

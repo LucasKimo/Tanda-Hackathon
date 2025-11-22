@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [eventId, setEventId] = useState("TANDA");
+  const baseUrl = "https://mixr.vercel.app/join"; // 나중에 배포 URL로 변경
+
+  const qrUrl = `${baseUrl}?eventId=${eventId}`;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={{ padding: "20px" }}>
+      <h1>Mixr QR Generator</h1>
+
+      <input
+        value={eventId}
+        onChange={(e) => setEventId(e.target.value)}
+        placeholder="Event ID"
+        style={{ padding: "8px", marginBottom: "20px" }}
+      />
+
+      <div style={{ marginTop: "20px" }}>
+        <QRCodeCanvas value={qrUrl} size={200} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <p style={{ marginTop: "10px" }}>{qrUrl}</p>
+    </div>
+  );
 }
 
-export default App
+export default App;
