@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.1",
+    "lucide-react": "^0.554.0"
+  }
+}
