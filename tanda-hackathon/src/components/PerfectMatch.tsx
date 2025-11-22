@@ -1,7 +1,7 @@
 import { Sparkles, Heart, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import type { Match } from '../App';
+import type { Match } from '../AttendeeApp';
 import { getIcebreakerQuestions } from '../utils/icebreakers';
 
 interface PerfectMatchProps {

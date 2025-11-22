@@ -5,7 +5,7 @@ import { Label } from './ui/label';
 import { Badge } from './ui/badge';
 import { Textarea } from './ui/textarea';
 import { Camera } from 'lucide-react';
-import type { Profile } from '../App';
+import type { Profile } from '../AttendeeApp';
 
 interface ProfileSetupProps {
   onComplete: (profile: Profile) => void;
